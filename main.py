@@ -58,8 +58,9 @@ if uploaded_file is not None:
                         st.markdown(f"""
                         Số tiền {amount} {currency} tương đương 
                         <span style="font-size: 24px; color: #8B0000; font-weight: bold;">
-                            {result} USD
+                            {result} 
                         </span>.
+                        USD
                         """, unsafe_allow_html=True)
                     else:
                         st.write(result)  # Nếu loại tiền không hợp lệ
