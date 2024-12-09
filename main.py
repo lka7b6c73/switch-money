@@ -54,7 +54,11 @@ if uploaded_file is not None:
                     amount = float(cleaned_amount)
                     result = convert_to_usd(currency, amount, exchange_rates)
                     if isinstance(result, float):
-                        st.write(f"Số tiền {amount} {currency} tương đương {result} USD.")
+                        st.markdown(f"""
+<p style="font-size: 24px; color: red; font-weight: bold;">
+    Số tiền {amount} {currency} tương đương {result} USD.
+</p>
+""", unsafe_allow_html=True)
                     else:
                         st.write(result)  # Nếu loại tiền không hợp lệ
                 except ValueError:
