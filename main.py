@@ -1,5 +1,6 @@
 import streamlit as st
-# import io
+import io
+st.write("Vui lòng tải lên file tỷ giá để bắt đầu.")
 st.write("Vui lòng tải lên file tỷ giá để bắt đầu.")
 # # Hàm đọc dữ liệu từ file và lưu vào dictionary
 # def read_exchange_rates(file):
