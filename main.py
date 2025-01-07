@@ -43,7 +43,7 @@ def convert_to_usd(currency, amount, exchange_rates):
 st.title('Ứng Dụng Đổi Tiền Tệ Sang USD')
 
 # Người dùng tải lên file
-uploaded_file = st.file_uploader("Tải lên file tỷ giá (định dạng .txt)", type=["txt"])
+uploaded_file = st.file_uploader("Tải lên file tỷ giá (định dạng .xlsx)", type=["xlsx"])
 
 # Nếu có file tải lên
 if uploaded_file is not None:
