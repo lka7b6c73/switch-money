@@ -1,19 +1,34 @@
 import streamlit as st
 import io
 
-# Hàm đọc dữ liệu từ file và lưu vào dictionary
+# # Hàm đọc dữ liệu từ file và lưu vào dictionary
+# def read_exchange_rates(file):
+#     exchange_rates = {}
+#     currencies = []
+#     for line in file:
+#         parts = line.decode("utf-8").strip().split("\t")
+#         currency = parts[0]
+#         # Thay thế dấu phẩy bằng dấu chấm và chuyển đổi thành float
+#         rate = float(parts[1].replace(",", "."))
+#         exchange_rates[currency] = rate
+#         currencies.append(currency)  # Lưu loại tiền vào danh sách
+#     return exchange_rates, currencies
 def read_exchange_rates(file):
+    # Đọc dữ liệu từ file Excel
+    df = pd.read_excel(file, engine='openpyxl')  # Đảm bảo cài đặt openpyxl để đọc file Excel
+
+    # Khởi tạo dictionary và danh sách các loại tiền tệ
     exchange_rates = {}
     currencies = []
-    for line in file:
-        parts = line.decode("utf-8").strip().split("\t")
-        currency = parts[0]
-        # Thay thế dấu phẩy bằng dấu chấm và chuyển đổi thành float
-        rate = float(parts[1].replace(",", "."))
+
+    # Duyệt qua từng hàng trong DataFrame
+    for index, row in df.iterrows():
+        currency = row[0]  # Cột đầu tiên chứa mã tiền tệ
+        rate = float(str(row[1]).replace(",", "."))  # Cột thứ hai chứa tỷ giá, thay dấu phẩy bằng dấu chấm nếu có
         exchange_rates[currency] = rate
         currencies.append(currency)  # Lưu loại tiền vào danh sách
-    return exchange_rates, currencies
 
+    return exchange_rates, currencies
 # Hàm chuyển đổi tiền tệ sang USD
 def convert_to_usd(currency, amount, exchange_rates):
     currency = currency.upper()
